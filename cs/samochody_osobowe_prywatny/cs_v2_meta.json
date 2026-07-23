@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "category_name": "Samochody osobowe — nabywca prywatny",
+    "category_slug": "samochody_osobowe_prywatny",
+    "level": "category",
+    "version": "1.0",
+    "cs_version": "v2",
+    "project": "Audi_Plichta",
+    "cs_series": "CS-1 z 5 (CS-0 Zbiorczy / CS-1 Prywatny / CS-2 Leasing / CS-3 Biznes / CS-4 EV)",
+    "built": "2026-07-23",
+    "sources": ["VW_PHD_research_24IDI_2020", "VW_Customer_Journey_Updated", "VW_DCJ_qual_quant", "audi-strateg-werdykt-2026-07-23"]
+  },
+  "ceps": [
+    {"id": "cep_awaria_frustracja",    "label": "Stary auto się psuje", "typ": "POTRZEBA"},
+    {"id": "cep_zmiana_zyciowa",       "label": "Zmiana sytuacji życiowej", "typ": "POTRZEBA"},
+    {"id": "cep_leasing_odkrycie",     "label": "Odkrycie leasingu prywatnego", "typ": "EMOCJA"},
+    {"id": "cep_koszty_eksploatacji",  "label": "Rosnące koszty eksploatacji", "typ": "POTRZEBA"},
+    {"id": "cep_self_gift_awans",      "label": "Nagroda dla siebie / awans", "typ": "EMOCJA"},
+    {"id": "cep_elektryk_ciekawostka", "label": "Ciekawość elektryka / chińskie EV", "typ": "EMOCJA"},
+    {"id": "cep_koniec_leasingu",      "label": "Koniec umowy leasingowej", "typ": "POTRZEBA"},
+    {"id": "cep_pierwsze_auto",        "label": "Pierwsze auto po prawie jazdy", "typ": "POTRZEBA"}
+  ],
+  "consumer_decision_tree": {
+    "L1_routing": "CEP → typ decyzji",
+    "L2_sequence": ["nowy_vs_uzywany", "finansowanie", "budzet_priorytet", "naped_ev_fork", "segment_rozmiar", "dostepnosc_czas"],
+    "ev_disruption_fork": {
+      "trigger": "naped=BEV",
+      "node_A": "Premium EV (Audi/BMW/Volvo 150k+)",
+      "node_B": "Chiński EV (BYD/MG/OMODA 90-140k)",
+      "objections_B": ["serwis_PL", "gwarancja", "wstydu_test", "zasieg_zima"]
+    }
+  },
+  "kcf": [
+    "niezawodnosc_gwarancja", "naped", "forma_finansowania", "segment_rozmiar",
+    "tco_calkowity", "dostepnosc_czas", "historia_serwisowa", "bezpieczenstwo_ncap",
+    "wyposazenie_bazowe", "wartosc_rezydualna", "trade_in", "zasieg_ev"
+  ],
+  "forbidden_patterns": [
+    "niezawodne_ekonomiczne_bez_danych",
+    "niska_rata_bez_parametrow_leasingu",
+    "szybka_dostawa_bez_daty",
+    "bogate_wyposazenie_bez_listy",
+    "najlepsze_w_klasie_bez_zrodla",
+    "chinskie_gorsze_bez_argumentu",
+    "ev_przyszlosc_bez_warunkow",
+    "testdrive_mozliwy_bez_konkretow"
+  ],
+  "ceny_pln": {
+    "entry_A_B": {"min": 60000, "max": 110000, "przyklady": ["VW Polo", "Skoda Fabia", "Toyota Yaris", "Dacia Sandero"]},
+    "mid_C": {"min": 110000, "max": 180000, "przyklady": ["VW Golf", "Toyota Corolla", "Skoda Octavia", "Hyundai Tucson"]},
+    "premium_D_E": {"min": 180000, "max": 320000, "przyklady": ["Audi A4", "Audi Q5", "BMW 3", "BMW X3", "MB C-klasa"]},
+    "ultra_premium": {"min": 320000, "max": null, "przyklady": ["Audi Q7", "Audi Q8", "Audi e-tron", "BMW X5"]},
+    "chinskie_ev": {"min": 90000, "max": 160000, "przyklady": ["BYD Seal", "BYD Atto3", "MG4", "OMODA 5 EV", "Xpeng G6"]}
+  }
+}
